@@ -28,7 +28,7 @@ public class ManualTestRunner {
         System.out.println("Original Price: " + originalPrice);
 
         DiscountStrategy tenPercentOff = new PercentageDiscount(10);
-        double priceAfterFixed = calculator.calculateFinalPrice(myOrder, tenPercentOff);
+        double priceAfterPercentage = calculator.calculateFinalPrice(myOrder, tenPercentOff);
         System.out.println("Price with 10% discount: " + priceAfterPercentage);
 
         DiscountStrategy fiveHundredOff = new FixedDiscount(500);
