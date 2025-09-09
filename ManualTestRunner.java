@@ -27,9 +27,9 @@ public class ManualTestRunner {
         double originalPrice = myOrder.getTotalPrice();
         System.out.println("Original Price: " + originalPrice);
 
-        DiscountStrategy tenPercentOff = new PercentageDiscount(8);
-        double priceAfterFixed = calculator.calculateFinalPrice(myOrder, fiveHundredOff);
-        System.out.println("Price with 10% discount: " + priceAfterFixed);
+        DiscountStrategy tenPercentOff = new PercentageDiscount(10);
+        double priceAfterFixed = calculator.calculateFinalPrice(myOrder, tenPercentOff);
+        System.out.println("Price with 10% discount: " + priceAfterPercentage);
 
         DiscountStrategy fiveHundredOff = new FixedDiscount(500);
         double priceAfterFixed = calculator.calculateFinalPrice(myOrder, fiveHundredOff);
@@ -45,11 +45,11 @@ public class ManualTestRunner {
         System.out.println("Decorated: " + giftWrapped.getInfo() + ", Cost: " + giftWrapped.getCost());
 
         //"ห่อ" ทับด้วยบริการประกันสินค้า
-        Shipment giftWrapped = new GiftWrapDecorator(standardShipment);
+        Shipment fullyloaded = new InsuranceDecorator(giftWrapped, myOrder);
         System.out.println("Decorated: " + fullyloaded.getInfo() + ", Cost: " + fullyloaded.getCost());
 
         System.out.println("\n--- 4. Printing Final Summary ---");
-        double finalPrice = priceAfterPercentage; // สมมติว่าใช้ส่วนลด 8%
+        double finalPrice = priceAfterPercentage; // สมมติว่าใช้ส่วนลด 10%
         double totalCost = finalPrice + fullyloaded.getCost();
         System.out.println("Final price after discount: " + finalPrice);
         System.out.println("Final shipment cost: " + fullyloaded.getCost());
